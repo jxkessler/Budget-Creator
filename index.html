@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Budget Creator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="grid">
+            
+            <header>
+                <h1>Budget Creator</h1>
+            </header>
+
+            <div class="body-content">
+                <div class="content-container income">
+                    <p class="content-title">Income</p>
+
+                    <div class="income-body">
+                        <form id="income-form">
+                            <input id="income-source" class="body-text-input" type="text" placeholder="Income Source">
+                            <input id="income-amount" class="body-text-input" type="text" placeholder="Income Amount">
+                            <button class="body-button" type="button" onclick="addIncome()">Add</button>
+                        </form>
+
+                        <ul id="income-list">
+                            <template id="income-list-item-template">
+                                <li class="income-list-item">
+                                    <p>$Amount from Income Source</p>
+                                    <button type="button" onclick="deleteIncome(this)">Delete</button> 
+                                </li>
+                            </template>
+                            
+                        </ul>
+                    </div>
+
+                    <p id="income-total" class="content-total">Income Total: $0</p>
+                </div>
+                <div class="content-container expenses">
+                    <p class="content-title">Expenses</p>
+
+                    <div class="expenses-body">
+                        <form id="expenses-form">
+                            <input class="body-text-input" type="text" placeholder="Expense Name">
+                            <input class="body-text-input" type="text" placeholder="Expense Amount">
+                            <select name="categories" id="expense-categories">
+                                    <option disabled selected>Categories</option>
+                                    <optgroup label="Housing">
+                                        <option value="Mortage">Mortage</option>
+                                        <option value="Rent">Rent</option>
+                                        <option value="Housing Property Taxes">Property Taxes</option>
+                                        <option value="HOA">HOA</option>
+                                        <option value="Housing Other">Other</option>
+                                    </optgroup>
+                                    <optgroup label="Utilities">
+                                        <option value="Electricity">Electricity</option>
+                                        <option value="Water">Water</option>
+                                        <option value="Gas">Gas</option>
+                                        <option value="Garbage">Garbage</option>
+                                        <option value="Internet">Internet</option>
+                                        <option value="Cable">Cable</option>
+                                        <option value="Phone">Phone</option>
+                                        <option value="Utilities Other">Other</option>
+                                    </optgroup>
+                                    <optgroup label="Transportation">
+                                        <option value="Car Payment">Car Payment</option>
+                                        <option value="Car Insurance">Car Insurance</option>
+                                        <option value="Gas">Gas</option>
+                                        <option value="Parking Fees">Parking Fees</option>
+                                        <option value="Car Property Taxes">Property Taxes</option>
+                                        <option value="Transportation Other">Other</option>
+                                    </optgroup>
+                                    <optgroup label="Food">
+                                        <option value="Groceries">Groceries</option>
+                                        <option value="Restaurants">Restaurants</option>
+                                        <option value="Pet Food">Pet Food</option>
+                                        <option value="Food Other">Other</option>
+                                    </optgroup>
+                                    <optgroup label="Personal">
+                                        <option value="Clothing">Clothing</option>
+                                        <option value="Gym">Gym</option>
+                                        <option value="Haircut">Haircut</option>
+                                        <option value="Cosmetics">Cosmetics</option>
+                                        <option value="Subscriptions">Subscriptions</option>
+                                        <option value="Entertainment">Entertainment</option>
+                                        <option value="Personal Other">Other</option>
+                                    </optgroup>
+                                    <optgroup label="Debt">
+                                        <option value="Personal Loans">Personal Loans</option>
+                                        <option value="Student Loans">Student Loans</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="Debt Other">Other</option>
+                                    </optgroup>
+                                    <option value="Other">Other</option>
+                                </select>
+                            <button class="body-button" type="button">Add</button>
+                        </form>
+                    </div>
+
+                    <p class="content-total">Expenses Total: $0</p>
+                </div>
+                <div class="content-container results">
+                    <p class="content-title">Results</p>
+
+                    <div class="results-body">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p>Budget Creator &copy 2019</p>
+            </footer>
+
+        </div>
+
+        <script src="./scripts/creator.js" async defer></script>
+    </body>
+</html>
