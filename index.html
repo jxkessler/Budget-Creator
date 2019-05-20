@@ -20,7 +20,7 @@
 
             <div class="body-content">
                 <div class="content-container income">
-                    <p class="content-title">Income</p>
+                    <p class="content-title">Monthly Income</p>
 
                     <div class="income-body">
                         <form id="income-form">
@@ -43,12 +43,12 @@
                     <p id="income-total" class="content-total">Income Total: $0</p>
                 </div>
                 <div class="content-container expenses">
-                    <p class="content-title">Expenses</p>
+                    <p class="content-title">Monthly Expenses</p>
 
                     <div class="expenses-body">
                         <form id="expenses-form">
-                            <input class="body-text-input" type="text" placeholder="Expense Name">
-                            <input class="body-text-input" type="text" placeholder="Expense Amount">
+                            <input id="expense-source" class="body-text-input" type="text" placeholder="Expense Name">
+                            <input id="expense-amount" class="body-text-input" type="text" placeholder="Expense Amount">
                             <select name="categories" id="expense-categories">
                                     <option disabled selected>Categories</option>
                                     <optgroup label="Housing">
@@ -99,11 +99,21 @@
                                     </optgroup>
                                     <option value="Other">Other</option>
                                 </select>
-                            <button class="body-button" type="button">Add</button>
+                            <button class="body-button" type="button" onclick="addExpense()">Add</button>
                         </form>
+
+                        <ul id="expense-list">
+                            <template id="expense-list-item-template">
+                                <li class="expense-list-item">
+                                    <p>$Amount from Expense Source</p>
+                                    <button type="button" onclick="deleteExpense(this)">Delete</button> 
+                                </li>
+                            </template>
+                        </ul>
+                        
                     </div>
 
-                    <p class="content-total">Expenses Total: $0</p>
+                    <p id="expense-total" class="content-total">Expenses Total: $0</p>
                 </div>
                 <div class="content-container results">
                     <p class="content-title">Results</p>

@@ -96,7 +96,7 @@ html, body {
     margin: 0;
 }
 
-.income-list-item > button{
+.income-list-item > button {
     float: right;
     border: black 1px solid;
     background: #f34213;
@@ -117,6 +117,37 @@ html, body {
     margin-top: 5px;
     margin-left: 5px;
     margin-bottom: 5px;
+}
+
+#expense-list {
+    margin: 0;
+    padding: 0;
+    margin-top: 2px;
+}
+
+#expense-list > li:nth-child(odd) {
+    background: #bebebe;
+}
+
+.expense-list-item {
+    list-style: none;
+    background: #eee;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.expense-list-item > p{
+    padding: 0;
+    margin: 0;
+}
+
+.expense-list-item > button{
+    float: right;
+    border: black 1px solid;
+    background: #f34213;
+    color: white;
+    padding: 5px;
 }
 
 /* FOOTER STYLING */
