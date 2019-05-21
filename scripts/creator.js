@@ -73,7 +73,7 @@ function deleteIncome(button) {
         return obj.id == liID;
     });
     incomeTotal = incomeTotal - income[0].amount;
-    incomeTotalField.innerHTML = "Income Total: $" + incomeTotal;
+    incomeTotalField.innerHTML = "Income Total: $" + incomeTotal.toFixed(2);
 
     //Remove item from array. Uses a filter to update the array with anything that doesn't have the same ID
     incomeArray = incomeArray.filter( function(obj) {
@@ -94,7 +94,7 @@ function deleteExpense(button) {
         return obj.id == liID;
     });
     expenseTotal = expenseTotal - expense[0].amount;
-    expenseTotalField.innerHTML = "Expense Total: $" + expenseTotal;
+    expenseTotalField.innerHTML = "Expense Total: $" + expenseTotal.toFixed(2);
 
     //Remove item from array. Uses a filter to update the array with anything that doesn't have the same ID
     expenseArray = expenseArray.filter( function(obj) {
@@ -177,7 +177,7 @@ function buildIncomeTemplate() {
 
     //Update total
     incomeTotal = incomeTotal + parseFloat(incomeAmount);
-    incomeTotalField.innerHTML = "Income Total: $" + incomeTotal;
+    incomeTotalField.innerHTML = "Income Total: $" + incomeTotal.toFixed(2);
 
     //Clear fields
     incomeAmountField.value = "";
@@ -213,7 +213,7 @@ function buildExpenseTemplate() {
 
     //Update total
     expenseTotal = expenseTotal + parseFloat(expenseAmount);
-    expenseTotalField.innerHTML = "Expense Total: $" + expenseTotal;
+    expenseTotalField.innerHTML = "Expense Total: $" + expenseTotal.toFixed(2);
 
     //Clear fields
     expenseAmountField.value = "";

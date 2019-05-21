@@ -97,7 +97,13 @@
                                         <option value="Credit Card">Credit Card</option>
                                         <option value="Debt Other">Other</option>
                                     </optgroup>
-                                    <option value="Other">Other</option>
+                                    <optgroup label="Savings">
+                                        <option value="Savings">Savings</option>
+                                    </optgroup>
+                                    <optgroup label="Miscellaneous">
+                                        <option value="Other">Other</option>
+                                    </optgroup>
+                                    
                                 </select>
                             <button class="body-button" type="button" onclick="addExpense()">Add</button>
                         </form>
@@ -118,10 +124,38 @@
                 <div class="content-container results">
                     <p class="content-title">Results</p>
 
-                    <div class="results-body">
+                    <div id="results-body">
+
+                        <form id="results-form">
+                            <button type="button">Submit</button>
+                        </form>
+
+                         
+                          <div id="results-content">
+                            <div>
+                                <p class="results-div-text">You have $<span id="net-amount">AMOUNT</span> left over at the end of the month.</p>
+                            </div>
+
+                            <hr>
+
+                            <div>
+                                <p class="results-div-text">You spend most of your money on <span id="most-spent-category">CATEGORY</span>, with $<span id="most-spent-amount">AMOUNT</span> spent.</p>
+                            </div>
+
+                            <hr>
+                            
+                            <div>
+                                <p class="results-div-text" id="least-spent">You spend the least amount of money on <span id="least-spent-category">CATEGORY</span>, with $<span id="least-spent-amount">AMOUNT</span> spent.</p>
+                            </div> 
+
+                            <hr>
+                        </div>  
+                        
                         
                     </div>
+
                 </div>
+
             </div>
 
             <footer>

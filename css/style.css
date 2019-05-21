@@ -150,6 +150,33 @@ html, body {
     padding: 5px;
 }
 
+/* RESULTS STYLING */
+#results-body {
+    background: #cddddd;
+    box-shadow: -2px 0px 1px grey;
+}
+
+#results-form {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 5px;
+    box-shadow: 0px 2px 1px grey;
+    margin-bottom: 10px;
+}
+
+#results-form > button{
+    border: black 1px solid;
+    padding: 5px;
+    background: #9ee493;
+}
+
+.results-div-text {
+    margin: 0;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 /* FOOTER STYLING */
 .grid > footer {
     background: #102542;
