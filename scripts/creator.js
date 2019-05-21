@@ -9,6 +9,9 @@ var expenseArray;
 
 var housingArray, utilitiesArray, transportationArray, foodArray, personalArray, debtArray, otherArray;
 
+var netAmountField, mostSpentCategoryField, mostSpentAmountField, leastSpentCategoryField, leastSpentAmountField;
+var netAmount, mostSpentCategory, mostSpent, mostSpentExpense, leastSpentCategory, leastSpent, leastSpentExpense;
+
 // INITIALIZE //
 init();
 
@@ -44,6 +47,13 @@ function init() {
     personalArray = [];
     debtArray = [];
     otherArray = [];
+
+    netAmountField = document.getElementById("net-amount");
+    mostSpentCategoryField = document.getElementById("most-spent-category");
+    mostSpentAmountField = document.getElementById("most-spent-amount");
+    leastSpentCategoryField = document.getElementById("least-spent-category");
+    leastSpentAmountField = document.getElementById("least-spent-amount");
+
 }
 
 function addIncome() {
@@ -57,6 +67,14 @@ function addIncome() {
 function addExpense() {
     if(checkExpenseFields()){
         buildExpenseTemplate();
+    }
+}
+
+function submitResults() {
+    if(checkIncomeExpense()){
+        setNetAmount();
+        setMostSpent() 
+        setLeastSpent();
     }
 }
 
@@ -149,6 +167,15 @@ function checkExpenseFields(){
 
 }
 
+function checkIncomeExpense() {
+    if(incomeArray.length == 0 && expenseArray == 0){
+        alert("You need to have at least one income source, and one expense.")
+        return false;
+    }else{
+        return true;
+    }
+}
+
 //Sets up the list item based on the income list item template
 function buildIncomeTemplate() {
 
@@ -220,4 +247,41 @@ function buildExpenseTemplate() {
     expenseSourceField.value = "";
     expenseCategoryField.selectedIndex = 0;
 
+}
+
+function setNetAmount() {
+    netAmount = parseFloat(incomeTotal) - parseFloat(expenseTotal);
+    netAmountField.innerHTML = netAmount.toFixed(2);
+}
+
+function setMostSpent() {
+    mostSpent = expenseArray[0].amount;
+    mostSpentExpense = expenseArray[0];
+
+    for(var x=1; x < expenseArray.length; x++){
+
+        if(expenseArray[x].amount > mostSpent) {
+            mostSpent = expenseArray[x].amount;
+            mostSpentExpense = expenseArray[x];
+        }
+    }
+
+    mostSpentCategoryField.innerHTML = mostSpentExpense.option;
+    mostSpentAmountField.innerHTML = mostSpentExpense.amount;
+}
+
+function setLeastSpent() {
+    leastSpent = expenseArray[0].amount;
+    leastSpentExpense = expenseArray[0];
+
+    for(var x=1; x < expenseArray.length; x++){
+
+        if(expenseArray[x].amount < leastSpent) {
+            leastSpent = expenseArray[x].amount;
+            leastSpentExpense = expenseArray[x];
+        }
+    }
+
+    leastSpentCategoryField.innerHTML = leastSpentExpense.option;
+    leastSpentAmountField.innerHTML = leastSpentExpense.amount;
 }
