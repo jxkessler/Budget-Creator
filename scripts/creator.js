@@ -128,17 +128,22 @@ function checkExpenseFields(){
     expenseAmount = expenseAmountField.value;
 
     if(expenseSource == ""){
-        alert("You need to enter an expense source. ");
+        alert("You need to enter an expense source.");
         return false;
     }else
     if(expenseAmount == "") {
-        alert("You need to enter an expense amount. ");
+        alert("You need to enter an expense amount.");
         return false;
     }else
     if(!expenseAmount.match(/^[0-9]\d*(\.\d+)?$/)){
-        alert("The expense amount needs to be a number that's greater than 0. ");
+        alert("The expense amount needs to be a number that's greater than 0.");
         return false;
-    }else{
+    }else
+    if(expenseCategoryField.selectedIndex == 0) {
+        alert("You need to select a category.");
+        return false;
+    }
+    else{
         return true;
     }
 
@@ -213,5 +218,6 @@ function buildExpenseTemplate() {
     //Clear fields
     expenseAmountField.value = "";
     expenseSourceField.value = "";
+    expenseCategoryField.selectedIndex = 0;
 
 }
