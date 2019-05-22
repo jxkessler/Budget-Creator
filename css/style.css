@@ -177,6 +177,11 @@ html, body {
     padding-right: 10px;
 }
 
+.results-percentage {
+    margin: 0;
+    padding: 0;
+}
+
 /* FOOTER STYLING */
 .grid > footer {
     background: #102542;

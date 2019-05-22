@@ -7,10 +7,12 @@ var expenseSourceField, expenseAmountField, expenseCategoryField, expenseTotalFi
 var expenseList, expenseListTempalte;
 var expenseArray;
 
-var housingArray, utilitiesArray, transportationArray, foodArray, personalArray, debtArray, otherArray;
+var housingArray, utilitiesArray, transportationArray, foodArray, personalArray, debtArray, savingsArray, miscArray, arrayOfArrays;
 
 var netAmountField, mostSpentCategoryField, mostSpentAmountField, leastSpentCategoryField, leastSpentAmountField;
 var netAmount, mostSpentCategory, mostSpent, mostSpentExpense, leastSpentCategory, leastSpent, leastSpentExpense;
+
+var resultsPercentageTemplate, resultsTextField;
 
 // INITIALIZE //
 init();
@@ -54,6 +56,11 @@ function init() {
     leastSpentCategoryField = document.getElementById("least-spent-category");
     leastSpentAmountField = document.getElementById("least-spent-amount");
 
+    resultsPercentageTemplate = document.getElementById("results-percentage-template");
+    resultsTextField = document.getElementById("results-text");
+   // resultsPercentage = document.getElementById("results-percentage");
+    // resultsOptgroup = document.getElementById("results-optgroup");
+
 }
 
 function addIncome() {
@@ -75,6 +82,7 @@ function submitResults() {
         setNetAmount();
         setMostSpent() 
         setLeastSpent();
+        findPercentages();
     }
 }
 
@@ -284,4 +292,135 @@ function setLeastSpent() {
 
     leastSpentCategoryField.innerHTML = leastSpentExpense.option;
     leastSpentAmountField.innerHTML = leastSpentExpense.amount;
+}
+
+//Goes through the array that contains that array of expenses, and find what percentage is spent based on the income
+function findPercentages() {
+    var percentages = [];
+
+    buildArrays();
+
+    for(var x=0; x < arrayOfArrays.length; x++) {
+        var percentage, total, optgroup;
+
+        optgroup = "";
+        total = 0;
+
+        for(var y=0; y < arrayOfArrays[x].length; y++){
+            if(optgroup == "" ){
+                optgroup = arrayOfArrays[x][y].optgroup
+            }
+            total = total + arrayOfArrays[x][y].amount;
+        }
+
+        percentage = (total/incomeTotal)*100;
+
+        var percentageObject = {
+            group: optgroup,
+            per: percentage
+        }
+
+        percentages.push(percentageObject);
+    }
+
+    sortPercentages(percentages);
+}
+
+//Filters the expense array to create new arrays for the specific optgroups
+function buildArrays() {
+    housingArray = expenseArray.filter( function(obj) {
+        return obj.optgroup == "Housing";
+    });
+    utilitiesArray = expenseArray.filter( function(obj) {
+        return obj.optgroup == "Utilities";
+    });
+    transportationArray = expenseArray.filter( function(obj) {
+        return obj.optgroup == "Transportation";
+    });
+    foodArray = expenseArray.filter( function(obj) {
+        return obj.optgroup == "Food";
+    });
+    personalArray = expenseArray.filter( function(obj) {
+        return obj.optgroup == "Personal";
+    });
+    debtArray = expenseArray.filter( function(obj) {
+        return obj.optgroup == "Debt";
+    });
+    savingsArray = expenseArray.filter( function(obj) {
+        return obj.optgroup == "Savings";
+    });
+    miscArray = expenseArray.filter( function(obj) {
+        return obj.optgroup == "Miscellaneous";
+    });
+
+    arrayOfArrays = [];
+
+    if(housingArray.length > 0){
+        arrayOfArrays.push(housingArray);
+    }
+
+    if(utilitiesArray.length > 0){
+        arrayOfArrays.push(utilitiesArray);
+    }
+
+    if(foodArray.length > 0){
+        arrayOfArrays.push(foodArray);
+    }
+
+    if(transportationArray.length > 0){
+        arrayOfArrays.push(transportationArray);
+    }
+
+    if(personalArray.length > 0){
+        arrayOfArrays.push(personalArray);
+    }
+
+    if(debtArray.length > 0){
+        arrayOfArrays.push(debtArray);
+    }
+
+    if(savingsArray.length > 0){
+        arrayOfArrays.push(savingsArray);
+    }
+
+    if(miscArray.length > 0){
+        arrayOfArrays.push(miscArray);
+    }
+}
+
+//Adds the percentage tempalte to results text
+function appendPercentage(group, per) {
+    var newTemplate = resultsPercentageTemplate.content.cloneNode(true);
+    var resultsPercentage = newTemplate.querySelector("#results-percentage");
+    var resultsOptgroup = newTemplate.querySelector("#results-optgroup");
+
+    resultsPercentage.innerHTML = per.toFixed(2) + "%";
+    resultsOptgroup.innerHTML = group;
+
+    resultsTextField.append(newTemplate);
+}
+
+//Sorts the percentage from greatest to least amount
+function sortPercentages(percentages) {
+
+    percentages.sort(compare);
+    console.log(percentages);
+    
+    for(var x=0; x < percentages.length; x++) {
+        appendPercentage(percentages[x].group, percentages[x].per);
+    }
+
+}
+
+//Function used by sort to compare percentage values
+function compare(a, b){
+    if(a.per > b .per) {
+        return -1;
+    }else
+    if(a.per < b.per) {
+        return 1;
+    }else
+    {
+        return 0;
+    }
 }
