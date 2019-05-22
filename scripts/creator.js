@@ -176,11 +176,11 @@ function checkExpenseFields(){
 }
 
 function checkIncomeExpense() {
-    if(incomeArray.length == 0 && expenseArray == 0){
+    if(incomeArray.length == 0 || expenseArray == 0){
         alert("You need to have at least one income source, and one expense.")
         return false;
     }else{
-        return true;
+        return true
     }
 }
 
@@ -243,7 +243,7 @@ function buildExpenseTemplate() {
     listItem.setAttribute("id", expense.id);
 
     //Update the nodes in the template
-    paragraph.innerHTML = "$" + expenseAmount + " from " + expenseSource;
+    paragraph.innerHTML = "<strong>" + expense.option + ":</strong> " + "$" + expenseAmount + " from " + expenseSource;
     expenseList.append(newTemplate);
 
     //Update total
